@@ -179,6 +179,10 @@ public class ChiTietPhieuNhapLayout extends AppCompatActivity {
                 if(dataMaPKSpinner.equalsIgnoreCase("All"))
                     filterALL(s.toString());
                 else if(!dataMaPKSpinner.equalsIgnoreCase("All"))filterIndex(s.toString(), dataMaPKSpinner);
+                editBtn.setVisibility(View.INVISIBLE);
+                delBtn.setVisibility(View.INVISIBLE);
+                previewVTBtn.setVisibility(View.INVISIBLE);
+                labelVT.setVisibility(View.INVISIBLE);
             }
         });
         hideSystemUI();

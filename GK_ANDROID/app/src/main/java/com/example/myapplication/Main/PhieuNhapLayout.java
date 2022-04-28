@@ -123,6 +123,8 @@ public class PhieuNhapLayout extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 filter(s.toString());
+                editBtn.setVisibility(View.INVISIBLE);
+                delBtn.setVisibility(View.INVISIBLE);
             }
         });
         hideSystemUI();
@@ -563,6 +565,7 @@ public class PhieuNhapLayout extends AppCompatActivity {
                         if (phieunhapDB.update(pn) == -1) break;
                         //   Cập nhật phiếu nhập list bằng cách lấy cái index ra và add vào cái index đó
                         int index = 0;
+                        phieunhaplist = phieunhapDB.select();
                         for (int i = 0; i < phieunhaplist.size(); i++) {
                             if (phieunhaplist.get(i).getSoPhieu().equals(id.getText().toString().trim())) {
                                 index = i;

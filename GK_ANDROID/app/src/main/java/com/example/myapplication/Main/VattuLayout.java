@@ -131,7 +131,10 @@ public class VattuLayout extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { filter(s.toString());}
+            public void afterTextChanged(Editable s) { filter(s.toString());
+            editBtn.setVisibility(View.INVISIBLE);
+            delBtn.setVisibility(View.INVISIBLE);
+            previewBtn.setVisibility(View.INVISIBLE);}
         });
         hideSystemUI();
     }
@@ -141,6 +144,7 @@ public class VattuLayout extends AppCompatActivity {
         int dem =1;
         vt_table_list.removeAllViews();
         vt_table_list.addView(tr);
+        image_list.clear();
         for (int k = 0; k < vtlist.size(); k++) {
             VatTu vatTu = vtlist.get(k);
             if (vatTu.getMaVt().toLowerCase().trim().contains(toString.trim().toLowerCase()) || vatTu.getTenVt().toLowerCase().contains(toString.toLowerCase())) {
@@ -501,6 +505,7 @@ public class VattuLayout extends AppCompatActivity {
                     case R.id.VT_insertBtn: {
                         if (!isSafeDialog( false )) break;
 //                        Log.d("process","1True");
+
                         VatTu vt = new VatTu(
                                 inputMaVT.getText().toString().trim() + "",
                                 inputTenVT.getText().toString().trim() + "",
@@ -509,6 +514,7 @@ public class VattuLayout extends AppCompatActivity {
                                 getImageDataPicker());
                         if (vattuDB.insert(vt) == -1) break;
 //                        Log.d("process","2True");
+                        inputHinh.setImageDrawable(null);
                         TableRow tr = createRow(VattuLayout.this, vt);
                         int n = vt_table_list.getChildCount();
                         tr.setId(n);
@@ -525,6 +531,7 @@ public class VattuLayout extends AppCompatActivity {
                         focusTenVT = null;
                         focusDVT = null;
                         focusGia = null;
+                        focusDataHinh = null;
                         success = true;
                         vtlist = vattuDB.select();
                     }
@@ -539,7 +546,10 @@ public class VattuLayout extends AppCompatActivity {
                                 inputDVT.getText().toString().trim() + "",
                                 inputGia.getText().toString().trim()+"",
                                 getImageDataPicker() );
-                        if( vattuDB.update( vt ) == -1 ) break;
+                        if( vattuDB.update( vt ) == -1 ) {
+                            break;
+                        }
+                        vtlist = vattuDB.select();
                         focusTenVT.setText( inputTenVT.getText().toString().trim() + "");
                         focusDVT.setText( inputDVT.getText().toString().trim() + "");
                         focusGia.setText( inputGia.getText().toString().trim() + "");

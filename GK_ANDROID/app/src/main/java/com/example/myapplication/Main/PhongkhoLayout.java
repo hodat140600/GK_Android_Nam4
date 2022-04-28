@@ -96,7 +96,9 @@ public class PhongkhoLayout extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { filter(s.toString());}
+            public void afterTextChanged(Editable s) { filter(s.toString());
+                editBtn.setVisibility(View.INVISIBLE);
+                delBtn.setVisibility(View.INVISIBLE);}
         });
         hideSystemUI();
     }
@@ -368,7 +370,9 @@ public class PhongkhoLayout extends AppCompatActivity {
                         TableRow tr = (TableRow) phongkho_table_list.getChildAt(indexofRow);
                         TextView id = (TextView) tr.getChildAt(0);
                         TextView name = (TextView) tr.getChildAt(1);
-                        if(phongkhoDB.update(new PhongKho(id.getText().toString().trim(), inputTenPK.getText().toString().trim())) == -1) break;
+                        if(phongkhoDB.update(new PhongKho(id.getText().toString().trim(), inputTenPK.getText().toString().trim())) == -1)
+                        {break;}
+                        phongkholist = phongkhoDB.select();
                         name.setText(inputTenPK.getText() + "");
                         success = true;
 

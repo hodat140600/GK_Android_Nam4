@@ -204,7 +204,7 @@ public class PhongKhoDatabase extends SQLiteOpenHelper {
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         // db.delete ( Tên bàng, string các điều kiện lọc - dùng ? để xác định, string[] từng phần tử trong string[] sẽ nạp vào ? );
-        db.beginTransaction();
+        //db.beginTransaction();
         try{
             return db.delete(
                     PhongKhoDatabase.TABLE_NAME
@@ -215,7 +215,7 @@ public class PhongKhoDatabase extends SQLiteOpenHelper {
             Log.d(TAG, "Error while trying to delete PHONG KHO");
             return -1;
         }finally {
-            db.endTransaction();
+            //db.endTransaction();
         }
     }
 

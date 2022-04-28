@@ -252,7 +252,7 @@ public class PhieuNhapDatabase extends SQLiteOpenHelper {
                 PhieuNhapDatabase.TABLE_NAME
                 , values
                 , PhieuNhapDatabase.COLUMN_SOPHIEU +"=?"
-                ,  new String[] { String.valueOf(phieuNhap.getMaK()) }
+                ,  new String[] { String.valueOf(phieuNhap.getSoPhieu()) }
         );
     }
     public long delete(PhieuNhap phieuNhap){
